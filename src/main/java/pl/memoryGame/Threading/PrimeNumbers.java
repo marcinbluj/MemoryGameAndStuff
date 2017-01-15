@@ -1,13 +1,12 @@
 package pl.memoryGame.Threading;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class PrimeNumbersThreading {
+public class PrimeNumbers {
     private int range;
 
-    public PrimeNumbersThreading(int range) {
+    public PrimeNumbers(int range) {
         this.range = range;
     }
 
@@ -34,10 +33,10 @@ public class PrimeNumbersThreading {
 
         List<Integer> primes;
 
-        PrimeNumbersThreading primeNumbersThreading = new PrimeNumbersThreading(50_000_000);
+        PrimeNumbers primeNumbers = new PrimeNumbers(50_000_000);
 
         long start = System.nanoTime();
-        primes = primeNumbersThreading.primeNumbersList();
+        primes = primeNumbers.primeNumbersList();
         System.out.println(primes);
         long stop = System.nanoTime();
         System.out.println((stop - start) / 1000000000f + " s");
