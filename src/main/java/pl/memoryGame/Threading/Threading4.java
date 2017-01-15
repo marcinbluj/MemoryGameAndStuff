@@ -3,9 +3,6 @@ package pl.memoryGame.Threading;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by RENT on 2017-01-14.
- */
 public class Threading4 {
     public static void main(String[] args) throws InterruptedException {
         List<Integer> integerList = new ArrayList<>();

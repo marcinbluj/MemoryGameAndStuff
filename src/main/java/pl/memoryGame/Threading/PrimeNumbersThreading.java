@@ -1,18 +1,16 @@
 package pl.memoryGame.Threading;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by RENT on 2017-01-14.
- */
 public class PrimeNumbersThreading {
 
     public static List<Integer> primeNumbersList(int range){
         List<Integer> list = new ArrayList<>();
         for (int i = 2; i <= range; i++) {
             boolean flag = false;
-            for (int j = 2; j < i-1; i++) {
+            for (int j = 2; j <= Math.sqrt(i); j++) {
                 if (i%j == 0){
                     flag = true;
                     break;
@@ -20,12 +18,20 @@ public class PrimeNumbersThreading {
             }
             if (!flag) {
                 list.add(i);
+                System.out.println(i);
             }
         }
         return list;
     }
 
     public static void main(String[] args) {
-        System.out.println(primeNumbersList(50));
+
+        List<Integer> primes;
+        long start = System.nanoTime();
+        primes = primeNumbersList(500000);
+        System.out.println(primes);
+        long stop = System.nanoTime();
+        System.out.println((stop-start)/1000000000f+" s");
+        System.out.println(primes.size());
     }
 }
