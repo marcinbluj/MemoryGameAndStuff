@@ -6,33 +6,48 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameButton extends JButton implements MouseListener {
-    private static int counter;
-    private static GameMarks[] currentMark = new GameMarks[2];
 
+    private static List<GameButton> buttonList = new ArrayList<>();
     private GameMarks mark;
+    private int index;
 
 
     public GameButton(Dimension location, GameMarks mark) {
 
+        this.mark = mark;
+
         addMouseListener(this);
 
-        setSize(70,70);
+        setSize(70, 70);
         setLocation(location.width, location.height);
 
-        counter = 0;
-        this.mark = mark;
+        buttonList.add(this);
+        index = buttonList.indexOf(this);
+    }
+
+    public List<GameButton> getButtonList(){
+        return buttonList;
+    }
+
+    public GameMarks getMark(){
+        return mark;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-//        counter++;
-//        if (counter == 1 && mark.getMark().equals())
-//        mark.setState(true);
-//        currentMark[counter] = mark;
+
+        mark.setState(true);
+        setEnabled(false);
+        setText(mark.toString());
+
+//        if (buttonList.size()%2 == 0){
+//            int indexOfLast = buttonList.size()-1;
 //
-//        setText(mark.toString());
+//        }
     }
 
     @Override
