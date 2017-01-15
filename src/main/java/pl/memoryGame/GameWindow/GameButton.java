@@ -13,8 +13,6 @@ public class GameButton extends JButton implements MouseListener {
 
     private static List<GameButton> buttonList = new ArrayList<>();
     private GameMarks mark;
-    private int index;
-
 
     public GameButton(Dimension location, GameMarks mark) {
 
@@ -26,7 +24,6 @@ public class GameButton extends JButton implements MouseListener {
         setLocation(location.width, location.height);
 
         buttonList.add(this);
-        index = buttonList.indexOf(this);
     }
 
     public List<GameButton> getButtonList(){
