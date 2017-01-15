@@ -42,10 +42,9 @@ public class PrimeNumbers {
         System.out.println((stop - start) / 1000000000f + " s");
         System.out.println(primes.size());
 
-        System.out.println(primes.get(0));
-        System.out.println(primes.get(1));
-        System.out.println(primes.get(2));
-        System.out.println(primes.get(3));
-        System.out.println(primes.get(4));
+        for (int i = 0; i < 10; i++) {
+            System.out.println(primes.get(i));
+        }
+
     }
 }
