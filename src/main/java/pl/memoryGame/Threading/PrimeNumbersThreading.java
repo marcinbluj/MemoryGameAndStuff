@@ -5,13 +5,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PrimeNumbersThreading {
+    private int range;
 
-    public static List<Integer> primeNumbersList(int range){
+    public PrimeNumbersThreading(int range) {
+        this.range = range;
+    }
+
+    public List<Integer> primeNumbersList() {
         List<Integer> list = new ArrayList<>();
+
         for (int i = 2; i <= range; i++) {
             boolean flag = false;
-            for (int j = 2; j <= Math.sqrt(i); j++) {
-                if (i%j == 0){
+            for (int j = 0; j < list.size() && list.get(j) <= Math.sqrt(i); j++) {
+                if (i % list.get(j) == 0) {
                     flag = true;
                     break;
                 }
@@ -24,14 +30,23 @@ public class PrimeNumbersThreading {
         return list;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         List<Integer> primes;
+
+        PrimeNumbersThreading primeNumbersThreading = new PrimeNumbersThreading(50_000_000);
+
         long start = System.nanoTime();
-        primes = primeNumbersList(500000);
+        primes = primeNumbersThreading.primeNumbersList();
         System.out.println(primes);
         long stop = System.nanoTime();
-        System.out.println((stop-start)/1000000000f+" s");
+        System.out.println((stop - start) / 1000000000f + " s");
         System.out.println(primes.size());
+
+        System.out.println(primes.get(0));
+        System.out.println(primes.get(1));
+        System.out.println(primes.get(2));
+        System.out.println(primes.get(3));
+        System.out.println(primes.get(4));
     }
 }
