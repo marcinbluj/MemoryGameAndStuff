@@ -22,6 +22,7 @@ public class Threading4 {
 
         Thread thread1 = new Thread(runnable);
         thread1.start();
+
         thread.join();
         thread1.join();
 
