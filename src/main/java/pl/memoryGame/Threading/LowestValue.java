@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 public class LowestValue {
-    int[] array;
-    int lowestValue = Integer.MAX_VALUE;
-    int i = 0;
+    private int[] array;
+    private int lowestValue = Integer.MAX_VALUE;
+    private int i = 0;
 
     public LowestValue(int[] array) {
         this.array = array;
     }
 
-    public LowestValue(int length, int maxNumber, int threadsNumber) throws InterruptedException {
+    private LowestValue(int length, int maxNumber, int threadsNumber) throws InterruptedException {
         array = new int[length];
 
         Thread[] threads = new Thread[threadsNumber];
@@ -88,7 +88,7 @@ public class LowestValue {
         return lowestValueWithIndex;
     }
 
-    public List<int[]> lowestValueThreading() throws InterruptedException {
+    private List<int[]> lowestValueThreading() throws InterruptedException {
 
         List<int[]> lowestValueWithIndex = new ArrayList<>();
 
