@@ -15,6 +15,7 @@ public class PrimeNumbers {
 
         for (int i = 2; i <= range; i++) {
             boolean flag = false;
+
             for (int j = 0; j < list.size() && list.get(j) <= Math.sqrt(i); j++) {
                 if (i % list.get(j) == 0) {
                     flag = true;
