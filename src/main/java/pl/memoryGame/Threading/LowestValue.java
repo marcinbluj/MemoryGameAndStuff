@@ -34,6 +34,7 @@ public class LowestValue {
                     for (int j = (int) startValue; j < (int) endValue; j++) {
 
                         array[j] = new Random().nextInt(maxNumber) + 1;
+//                        array[j] = j;
                     }
                 }
             });
@@ -52,6 +53,7 @@ public class LowestValue {
         }
 
         long stop = System.nanoTime();
+
         System.out.println((stop - start) / 1_000_000_000f + " s");
 
     }
@@ -84,13 +86,11 @@ public class LowestValue {
 
         long start = System.nanoTime();
 
-        List<int[]> list = new LowestValue(100_000_000, 200_000, 2).lowestValueThreading();
-        System.out.println(list.get(0)[0]);
-        System.out.println(list.get(0)[1]);
-        System.out.println(list.get(1)[0]);
-        System.out.println(list.get(1)[1]);
+        List<int[]> list = new LowestValue(200_000_000, 200_000, 4).lowestValueThreading();
+        System.out.println("index: "+list.get(0)[0]);
+        System.out.println("value: "+list.get(0)[1]);
 
-        System.out.println(list.size());
+        System.out.println("size: "+list.size());
 
         long stop = System.nanoTime();
         System.out.println((stop - start) / 1000000000f + " s");
