@@ -22,6 +22,6 @@ public class SumOfInts {
         personList.add(new Person("Łukasz", "Mickiewicz", 1960));
         personList.add(new Person("Adam", "Adamski", 1970));
 
-        personList.stream().filter(x -> x.getYear() < 1970).forEach(x-> System.out.println(x));
+        personList.stream().filter(x -> x.getYear() < 1970).forEach(System.out::println);
     }
 }
