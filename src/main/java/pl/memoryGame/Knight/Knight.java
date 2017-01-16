@@ -26,12 +26,7 @@ public class Knight {
         Knight knight2 = new Knight(new Axe());
         knight2.fight();
 
-        Knight knight3 = new Knight(new Weapon() {
-            @Override
-            public void use() {
-                System.out.println("Bashing using mace");
-            }
-        });
+        Knight knight3 = new Knight(() -> System.out.println("Bashing using mace"));
         knight3.fight();
     }
 }

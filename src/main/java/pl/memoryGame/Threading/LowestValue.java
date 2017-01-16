@@ -86,7 +86,7 @@ public class LowestValue {
 
         long start = System.nanoTime();
 
-        List<int[]> list = new LowestValue(200_000_000, 200_000, 4).lowestValueThreading();
+        List<int[]> list = new LowestValue(200_000_000, 1_000_000_000, 1).lowestValueThreading();
         System.out.println("index: "+list.get(0)[0]);
         System.out.println("value: "+list.get(0)[1]);
 
