@@ -10,10 +10,6 @@ public class LowestValue {
     private int lowestValue = Integer.MAX_VALUE;
     private int i = 0;
 
-    public LowestValue(int[] array) {
-        this.array = array;
-    }
-
     private LowestValue(int length, int maxNumber, int threadsNumber) throws InterruptedException {
         array = new int[length];
 
@@ -48,13 +44,13 @@ public class LowestValue {
 
         long start = System.nanoTime();
 
-        for (int j = 0; j < threads.length; j++) {
+        for (Thread threadStart : threads) {
 
-            threads[j].start();
+            threadStart.start();
         }
-        for (int j = 0; j < threads.length; j++) {
+        for (Thread threadJoin : threads) {
 
-            threads[j].join();
+            threadJoin.join();
         }
 
         long stop = System.nanoTime();
@@ -64,28 +60,6 @@ public class LowestValue {
 
     public int getI(){
         return i;
-    }
-
-    public List<int[]> lowestValue() {
-
-        int lowestValue = Integer.MAX_VALUE;
-        List<int[]> lowestValueWithIndex = new ArrayList<>();
-
-        for (int i = 0; i < array.length; i++) {
-
-            if (array[i] < lowestValue) {
-
-                lowestValue = array[i];
-                lowestValueWithIndex.clear();
-                lowestValueWithIndex.add(new int[]{i, lowestValue});
-            } else if (array[i] == lowestValue) {
-
-                lowestValueWithIndex.add(new int[]{i, lowestValue});
-            }
-        }
-
-
-        return lowestValueWithIndex;
     }
 
     private List<int[]> lowestValueThreading() throws InterruptedException {
