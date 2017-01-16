@@ -20,11 +20,25 @@ public class LowestValue {
         Thread[] threads = new Thread[threadsNumber];
 
         while (i < threadsNumber) {
+
+            System.out.println("i = "+i);
                 threads[i] = new Thread(new Runnable() {
+                    int i = getI();
+
                     @Override
                     public void run() {
 
-                        for (int j = (array.length / threadsNumber) * i; j < (((array.length / threadsNumber) * (i + 1)) - 1); j++) {
+                        System.out.println("i' = "+i);
+                        double startValue = array.length * ((double)i / threadsNumber);
+
+                        System.out.println("1. "+((double)i / threadsNumber));
+                        double endValue = array.length * ((double)(i + 1) / threadsNumber);
+
+                        System.out.println("starts with: "+i+": "+startValue);
+                        System.out.println("ends with: "+i+": "+endValue);
+
+                        for (int j = (int) startValue; j < (int) endValue; j++) {
+
                             array[j] = new Random().nextInt(maxNumber) + 1;
                         }
                     }
@@ -35,15 +49,21 @@ public class LowestValue {
         long start = System.nanoTime();
 
         for (int j = 0; j < threads.length; j++) {
+
             threads[j].start();
         }
         for (int j = 0; j < threads.length; j++) {
+
             threads[j].join();
         }
 
         long stop = System.nanoTime();
-        System.out.println((stop - start) / 1000000000f + " s");
+        System.out.println((stop - start) / 1_000_000_000f + " s");
 
+    }
+
+    public int getI(){
+        return i;
     }
 
     public List<int[]> lowestValue() {
@@ -92,7 +112,13 @@ public class LowestValue {
 
         long start = System.nanoTime();
 
-        System.out.println(new LowestValue(100_000_000, 200_000, 2).lowestValueThreading().size());
+        List<int[]> list = new LowestValue(100_000_000, 200_000, 2).lowestValueThreading();
+        System.out.println(list.get(0)[0]);
+        System.out.println(list.get(0)[1]);
+        System.out.println(list.get(1)[0]);
+        System.out.println(list.get(1)[1]);
+
+        System.out.println(list.size());
 
         long stop = System.nanoTime();
         System.out.println((stop - start) / 1000000000f + " s");
