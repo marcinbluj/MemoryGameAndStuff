@@ -19,6 +19,7 @@ public class LowestValue {
 
             System.out.println("i = "+i);
                 threads[i] = new Thread(new Runnable() {
+
                     int i = getI();
 
                     @Override
