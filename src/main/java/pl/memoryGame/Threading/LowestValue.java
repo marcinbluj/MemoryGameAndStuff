@@ -17,29 +17,26 @@ public class LowestValue {
 
         while (i < threadsNumber) {
 
-            System.out.println("i = "+i);
-                threads[i] = new Thread(new Runnable() {
+            threads[i] = new Thread(new Runnable() {
 
-                    int i = getI();
+                int i = getI();
 
-                    @Override
-                    public void run() {
+                @Override
+                public void run() {
 
-                        System.out.println("i' = "+i);
-                        double startValue = array.length * ((double)i / threadsNumber);
+                    double startValue = array.length * ((double) i / threadsNumber);
 
-                        System.out.println("1. "+((double)i / threadsNumber));
-                        double endValue = array.length * ((double)(i + 1) / threadsNumber);
+                    double endValue = array.length * ((double) (i + 1) / threadsNumber);
 
-                        System.out.println("starts with: "+i+": "+startValue);
-                        System.out.println("ends with: "+i+": "+endValue);
+                    System.out.println("starts with: " + i + ": " + startValue);
+                    System.out.println("ends with: " + i + ": " + endValue);
 
-                        for (int j = (int) startValue; j < (int) endValue; j++) {
+                    for (int j = (int) startValue; j < (int) endValue; j++) {
 
-                            array[j] = new Random().nextInt(maxNumber) + 1;
-                        }
+                        array[j] = new Random().nextInt(maxNumber) + 1;
                     }
-                });
+                }
+            });
             i = i + 1;
         }
 
@@ -59,7 +56,7 @@ public class LowestValue {
 
     }
 
-    public int getI(){
+    public int getI() {
         return i;
     }
 
