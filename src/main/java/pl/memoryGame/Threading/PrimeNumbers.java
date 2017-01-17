@@ -34,7 +34,7 @@ public class PrimeNumbers {
 
         List<Integer> primes;
 
-        PrimeNumbers primeNumbers = new PrimeNumbers(50_000_000);
+        PrimeNumbers primeNumbers = new PrimeNumbers(5_000_000);
 
         long start = System.nanoTime();
         primes = primeNumbers.primeNumbersList();
