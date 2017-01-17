@@ -6,12 +6,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.partitioningBy;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by RENT on 2017-01-16.
  */
-public class SumOfInts {
+public class LambdaStuff {
     public static void main(String[] args) {
 
 //        final int[] y = {0};
@@ -46,12 +46,17 @@ public class SumOfInts {
 //        double average = intSummaryStatistics.getAverage();
 //        System.out.println(average);
 
-        Map<Boolean, List<Person>> collect2=
-        personList.stream().collect(partitioningBy(x -> x.getYear() < 1980));
-
-
 //        int numberToCheck = 17;
 //        boolean isPrimeNumber = IntStream.range(2, numberToCheck).noneMatch(x -> numberToCheck % x == 0);
 //        System.out.println(isPrimeNumber);
+
+        Map<Boolean, List<Person>> collect2 = personList.stream().collect(partitioningBy(x -> x.getYear() < 1980));
+
+        Map<Boolean, List<Person>> mapByA = personList.stream().collect(partitioningBy(x -> x.getName().toUpperCase().charAt(0) == 'A'));
+
+        System.out.println(mapByA.get(true));
+        System.out.println(mapByA.get(false));
+
+
     }
 }
