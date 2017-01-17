@@ -12,9 +12,10 @@ public class PrimeNumbers {
 
     public List<Integer> primeNumbersList() {
         List<Integer> list = new ArrayList<>();
+        boolean flag;
 
         for (int i = 2; i <= range; i++) {
-            boolean flag = false;
+            flag = false;
 
             for (int j = 0; j < list.size() && list.get(j) <= Math.sqrt(i); j++) {
                 if (i % list.get(j) == 0) {
@@ -24,7 +25,7 @@ public class PrimeNumbers {
             }
             if (!flag) {
                 list.add(i);
-                System.out.println(i);
+//                System.out.println(i);
             }
         }
         return list;
