@@ -17,8 +17,8 @@ public class PrimeNumbersStream {
 //        IntStream.range(2, 5_000_000).forEach(x -> {
 //            flag[0] = false;
 //
-//            IntStream.range(0, primeList.size()).filter(y -> primeList.get(y) <= Math.sqrt(x) && !flag[0]).noneMatch(y -> x % primeList.get(y) == 0)
-//
+//            IntStream.range(0, primeList.size()).filter(y -> primeList.get(y) <= Math.sqrt(x) && !flag[0])
+//                    primeList.stream().noneMatch(y -> x % primeList.get(y) == 0)
 //
 //                    .forEach(y -> {
 //                        if (x % primeList.get(y) == 0) {
