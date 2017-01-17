@@ -2,6 +2,7 @@ package pl.memoryGame.java8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -23,5 +24,13 @@ public class SumOfInts {
         personList.add(new Person("Adam", "Adamski", 1970));
 
         personList.stream().filter(x -> x.getYear() < 1970).forEach(System.out::println);
+
+        List<String> stringList = personList.stream().map(x -> x.getName() + " " + x.getLastName()).collect(Collectors.toList());
+
+        stringList.forEach(System.out::println);
+
+        int numberToCheck = 17;
+        boolean isPrimeNumber = IntStream.range(2, numberToCheck).noneMatch(x -> numberToCheck % x == 0);
+        System.out.println(isPrimeNumber);
     }
 }
