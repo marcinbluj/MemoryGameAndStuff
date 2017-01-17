@@ -1,5 +1,7 @@
 package pl.memoryGame.java8;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +28,10 @@ public class SumOfInts {
         personList.stream().filter(x -> x.getYear() < 1970).forEach(System.out::println);
 
         List<String> stringList = personList.stream().map(x -> x.getName() + " " + x.getLastName()).collect(Collectors.toList());
+//        personList.stream().map(x -> x.getName() + " " + x.getLastName()).forEach(System.out::println);
 
         stringList.forEach(System.out::println);
+
 
         int numberToCheck = 17;
         boolean isPrimeNumber = IntStream.range(2, numberToCheck).noneMatch(x -> numberToCheck % x == 0);
