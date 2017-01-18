@@ -51,10 +51,11 @@ public class LambdaMorse {
     }
 
     public static void main(String[] args) {
-        String aabbbddcc = LambdaMorse.convertToMorse("aabbbddcc");
-        String s = LambdaMorse.convertToText(aabbbddcc);
-        System.out.println(aabbbddcc);
-        System.out.println(LambdaMorse.convertToText(aabbbddcc));
+        String morseText = LambdaMorse.convertToMorse("aabbbddcc");
+        String text = LambdaMorse.convertToText(morseText);
+
+        System.out.println(morseText);
+        System.out.println(text);
 
     }
 }
