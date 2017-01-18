@@ -14,28 +14,23 @@ public class PrimeNumbersStream {
         long start = System.nanoTime();
 
 
-//        IntStream.range(2, 5_000_000).forEach(x -> {
-//            flag[0] = false;
-//
-//            IntStream.range(0, primeList.size()).filter(y -> primeList.get(y) <= Math.sqrt(x) && !flag[0])
-//                    primeList.stream().noneMatch(y -> x % primeList.get(y) == 0)
-//
-//                    .forEach(y -> {
-//                        if (x % primeList.get(y) == 0) {
-//                            flag[0] = true;
-//                        }
-//                    });
-//
-//            if (!flag[0]) {
-//                primeList.add(x);
-//                System.out.println(x);
-//            }
-//        });
+        primeList.add(2);
+//        primeList.add(3);
+//        primeList.add(5);
+//        primeList.add(7);
+//        primeList.add(11);
+//        primeList.add(13);
+
+        IntStream.range(3, 500_000).filter(x->
+                IntStream.range(0, primeList.size())
+                        .filter(y -> primeList.get(y) <= Math.sqrt(x))
+                        .allMatch(y-> x % primeList.get(y)!= 0))
+                .forEach(primeList::add);
 
 
-        List<Integer> primaryNumbers = new ArrayList<>();
-        List<Integer> collect = IntStream.range(2, 5_000_000).parallel().filter(x -> IntStream.range(2, (int) Math.sqrt(x) + 1)
-                .noneMatch(y -> x % y == 0)).boxed().collect(Collectors.toList());
+//        List<Integer> primaryNumbers = new ArrayList<>();
+//        List<Integer> collect = IntStream.range(2, 5_000_000).parallel().filter(x -> IntStream.range(2, (int) Math.sqrt(x) + 1)
+//                .noneMatch(y -> x % y == 0)).boxed().collect(Collectors.toList());
 
 
 
@@ -46,6 +41,6 @@ public class PrimeNumbersStream {
         long stop = System.nanoTime();
 
         System.out.println((stop - start) / 1000000000f + " s");
-        System.out.println(primaryNumbers.size());
+        System.out.println(primeList.size());
     }
 }
