@@ -24,7 +24,7 @@ public class PrimeNumbersStream {
         IntStream.range(3, 500_000).filter(x->
                 IntStream.range(0, primeList.size())
                         .filter(y -> primeList.get(y) <= Math.sqrt(x))
-                        .allMatch(y-> x % primeList.get(y)!= 0))
+                        .noneMatch(y-> x % primeList.get(y)== 0))
                 .forEach(primeList::add);
 
 
