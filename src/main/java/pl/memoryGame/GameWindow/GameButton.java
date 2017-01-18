@@ -41,10 +41,6 @@ public class GameButton extends JButton implements MouseListener {
         setEnabled(false);
         setText(mark.toString());
 
-//        if (buttonList.size()%2 == 0){
-//            int indexOfLast = buttonList.size()-1;
-//
-//        }
     }
 
     @Override
