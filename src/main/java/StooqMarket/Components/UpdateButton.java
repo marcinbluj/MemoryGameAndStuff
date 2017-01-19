@@ -28,7 +28,7 @@ public class UpdateButton extends JButton implements MouseListener {
         setSize(width, height);
         setLocation(x, y);
         setBorder(new BevelBorder(0));
-        setText("Update");
+        setText("Refresh chart");
     }
 
     @Override

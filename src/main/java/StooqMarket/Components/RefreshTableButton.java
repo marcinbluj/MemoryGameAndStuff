@@ -21,7 +21,7 @@ public class RefreshTableButton extends JButton implements MouseListener {
         addMouseListener(this);
         this.table = table;
 
-        setText("Refresh");
+        setText("Refresh table");
         setSize(width, height);
         setLocation(x, y);
         setBorder(new BevelBorder(0));
