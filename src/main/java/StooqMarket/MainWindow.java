@@ -39,6 +39,9 @@ public class MainWindow extends JFrame {
         GetButton getButton = new GetButton(150, 30, 160, 5, inputField, value, change, opening);
         add(getButton);
 
+        ChartPanel chartPanel = new ChartPanel(320, 5, inputField);
+        add(chartPanel);
+
 
         repaint();
     }
