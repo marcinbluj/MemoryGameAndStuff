@@ -22,15 +22,15 @@ public class MainWindow extends JFrame {
         InputField inputField = new InputField(150, 30, 5, 5);
         add(inputField);
 
-        add(new Label("Kurs", 95,20,5,45));
+        add(new Label("Kurs", 95, 20, 5, 45));
         OutputArea value = new OutputArea(95, 25, 5, 70);
         add(value);
 
-        add(new Label("Zmiana",95, 20, 109, 45));
+        add(new Label("Zmiana", 95, 20, 109, 45));
         OutputArea change = new OutputArea(95, 25, 109, 70);
         add(change);
 
-        add(new Label("Otwarcie",95, 20, 213, 45));
+        add(new Label("Otwarcie", 95, 20, 213, 45));
         OutputArea opening = new OutputArea(95, 25, 213, 70);
         add(opening);
 

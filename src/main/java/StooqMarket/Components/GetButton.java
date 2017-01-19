@@ -60,7 +60,7 @@ public class GetButton extends JButton implements MouseListener {
             String opening = contentOpening.text();
 
             outputAreaValue.setText(value);
-            outputAreaChange.setText(change1+" "+change2);
+            outputAreaChange.setText(change1 + " " + change2);
             outputAreaOpening.setText(opening);
 
             ChartPanel.setImg(inputText);

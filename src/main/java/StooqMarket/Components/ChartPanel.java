@@ -33,7 +33,7 @@ public class ChartPanel extends JPanel {
 
     }
 
-    public static void setImg(String inputText) throws IOException {
+    static void setImg(String inputText) throws IOException {
 
         Document doc = Jsoup.connect(("http://stooq.pl/q/?s=" + inputText)).get();
 
