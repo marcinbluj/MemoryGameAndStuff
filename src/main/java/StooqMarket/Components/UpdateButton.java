@@ -11,14 +11,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-public class GetButton extends JButton implements MouseListener {
+public class UpdateButton extends JButton implements MouseListener {
     private InputField inputField;
     private OutputArea outputAreaValue;
     private OutputArea outputAreaChange;
     private OutputArea outputAreaOpening;
 
-    public GetButton(int width, int height, int x, int y, InputField inputField,
-                     OutputArea outputAreaValue, OutputArea outputAreaChange, OutputArea outputAreaOpening) {
+    public UpdateButton(int width, int height, int x, int y, InputField inputField,
+                        OutputArea outputAreaValue, OutputArea outputAreaChange, OutputArea outputAreaOpening) {
         this.inputField = inputField;
         this.outputAreaValue = outputAreaValue;
         this.outputAreaChange = outputAreaChange;
@@ -28,7 +28,7 @@ public class GetButton extends JButton implements MouseListener {
         setSize(width, height);
         setLocation(x, y);
         setBorder(new BevelBorder(0));
-        setText("GET");
+        setText("Update");
     }
 
     @Override

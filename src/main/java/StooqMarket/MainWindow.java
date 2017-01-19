@@ -13,7 +13,7 @@ public class MainWindow extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
-        setSize(1000, 700);
+        setSize(890, 390);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -45,8 +45,8 @@ public class MainWindow extends JFrame {
         CombBox combBox = new CombBox(150, 30, 5, 100, inputField, value, change, opening);
         add(combBox);
 
-        GetButton getButton = new GetButton(150, 30, 160, 5, inputField, value, change, opening);
-        add(getButton);
+        UpdateButton updateButton = new UpdateButton(150, 30, 160, 5, inputField, value, change, opening);
+        add(updateButton);
 
 
         repaint();
