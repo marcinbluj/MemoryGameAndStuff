@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class MainWindow extends JFrame {
 
-    public MainWindow() throws HeadlessException {
+    private MainWindow() throws HeadlessException {
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();

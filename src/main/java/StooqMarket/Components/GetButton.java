@@ -45,7 +45,7 @@ public class GetButton extends JButton implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         String inputText = inputField.getText().toLowerCase().trim();
 
-        Document doc = null;
+        Document doc;
         try {
             doc = Jsoup.connect(("http://stooq.pl/q/?s=" + inputText)).get();
             Element content = doc.getElementById("aq_" + inputText + "_c2");
