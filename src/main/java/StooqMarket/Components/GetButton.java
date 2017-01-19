@@ -1,5 +1,9 @@
 package StooqMarket.Components;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.event.MouseEvent;
@@ -42,42 +46,14 @@ public class GetButton extends JButton implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         String inputText = inputField.getText().toLowerCase();
-        StringBuilder builder = new StringBuilder();
 
+        Document doc = null;
         try {
-            URL stream = new URL("http://stooq.pl/q/?s=^" + inputText);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(stream.openStream()));
-
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-                builder.append(inputLine);
-            in.close();
-
-            String urlText = builder.toString();
-
-            int indexStart = urlText.lastIndexOf(inputText + "_c2>") + inputText.length() + 4;
-
-            String rawNumber = urlText.subSequence(indexStart, indexStart + 20).toString();
-
-            int indexEnd = rawNumber.indexOf("<");
-
-            String value = rawNumber.substring(0, indexEnd);
+            doc = Jsoup.connect(("http://stooq.pl/q/?s=^" + inputText)).get();
+            Element content = doc.getElementById("aq_^"+inputText+"_c2");
+            String value = content.text();
 
             outputArea.setText(value);
-
-            boolean flag = false;
-            for (int i = 0; i < combBox.getItemCount(); i++) {
-                if(combBox.getItemAt(i).equals(inputText)){
-                    flag = true;
-                }
-            }
-            if (!flag) {
-                combBox.addItem(inputText);
-                flag = false;
-            }
-
 
         } catch (IOException e1) {
             e1.printStackTrace();
