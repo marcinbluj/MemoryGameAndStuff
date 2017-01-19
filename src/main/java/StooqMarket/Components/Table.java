@@ -11,7 +11,6 @@ public class Table extends JTable {
 
     public Table(int width, int height, int x, int y) {
 
-        data = RefreshTableButton.getData();
         setSize(width, height);
         setLocation(x, y);
         setBorder(new BevelBorder(1));
