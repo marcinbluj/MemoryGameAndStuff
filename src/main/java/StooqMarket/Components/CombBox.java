@@ -1,5 +1,6 @@
 package StooqMarket.Components;
 
+import StooqMarket.MainWindow;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,6 +22,7 @@ public class CombBox extends JComboBox implements ItemListener {
 
     public CombBox(int width, int height, int x, int y, InputField inputField,
                    OutputArea outputAreaValue, OutputArea outputAreaChange, OutputArea outputAreaOpening) {
+
         this.outputAreaValue = outputAreaValue;
         this.outputAreaChange = outputAreaChange;
         this.outputAreaOpening = outputAreaOpening;
@@ -31,15 +33,14 @@ public class CombBox extends JComboBox implements ItemListener {
         setLocation(x, y);
         setBorder(new BevelBorder(1));
 
-        List<String> values = new ArrayList<>();
         Document doc = null;
+
         try {
             doc = Jsoup.connect(("http://stooq.pl/t/?i=525")).get();
 
             for (int i = 0; i < 31; i++) {
                 Element elements = doc.getElementById("r_" + i);
                 String names = elements.getElementsByTag("a").text().toLowerCase();
-                values.add(names);
                 this.addItem(names);
             }
 
@@ -85,6 +86,8 @@ public class CombBox extends JComboBox implements ItemListener {
                     outputAreaChange.setForeground(Color.gray);
                 }
             }
+
+            ChartPanel.setImg(inputText);
 
         } catch (IOException e1) {
             e1.printStackTrace();

@@ -5,6 +5,7 @@ import StooqMarket.Components.Label;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainWindow extends JFrame {
 
@@ -33,14 +34,19 @@ public class MainWindow extends JFrame {
         OutputArea opening = new OutputArea(95, 25, 213, 70);
         add(opening);
 
+        try {
+            ChartPanel chartPanel = new ChartPanel(320, 5, inputField);
+            add(chartPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         CombBox combBox = new CombBox(150, 30, 5, 100, inputField, value, change, opening);
         add(combBox);
 
         GetButton getButton = new GetButton(150, 30, 160, 5, inputField, value, change, opening);
         add(getButton);
-
-        ChartPanel chartPanel = new ChartPanel(320, 5, inputField);
-        add(chartPanel);
 
 
         repaint();

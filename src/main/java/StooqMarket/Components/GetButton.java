@@ -63,6 +63,8 @@ public class GetButton extends JButton implements MouseListener {
             outputAreaChange.setText(change1+" "+change2);
             outputAreaOpening.setText(opening);
 
+            ChartPanel.setImg(inputText);
+
             if (!outputAreaValue.getText().isEmpty()) {
                 if (outputAreaValue.getText().charAt(0) == '+') {
                     outputAreaValue.setForeground(Color.green);
