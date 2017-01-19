@@ -20,13 +20,19 @@ public class MainWindow extends JFrame {
         InputField inputField = new InputField(150, 30, 5,5);
         add(inputField);
 
-        OutputArea outputArea = new OutputArea(305, 55, 5,40);
-        add(outputArea);
+        OutputArea value = new OutputArea(95, 25, 5,70);
+        add(value);
 
-        CombBox combBox = new CombBox(150, 30, 5, 100, inputField, outputArea);
+        OutputArea change = new OutputArea(95, 25, 109,70);
+        add(change);
+
+        OutputArea opening = new OutputArea(95, 25, 213,70);
+        add(opening);
+
+        CombBox combBox = new CombBox(150, 30, 5, 100, inputField, value);
         add(combBox);
 
-        GetButton getButton = new GetButton(150,30,160,5, inputField, outputArea, combBox);
+        GetButton getButton = new GetButton(150,30,160,5, inputField, value);
         add(getButton);
 
 

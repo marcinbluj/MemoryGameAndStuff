@@ -2,6 +2,7 @@ package StooqMarket.Components;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import java.awt.*;
 
 /**
  * Created by RENT on 2017-01-18.

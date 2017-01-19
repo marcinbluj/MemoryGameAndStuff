@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
@@ -51,6 +52,7 @@ public class CombBox extends JComboBox implements ItemListener {
 
         inputText = inputText.trim();
         Document doc = null;
+
         try {
             doc = Jsoup.connect(("http://stooq.pl/q/?s=" + inputText)).get();
             Element content = doc.getElementById("aq_" + inputText + "_c2");
@@ -58,6 +60,16 @@ public class CombBox extends JComboBox implements ItemListener {
 
             inputField.setText(inputText);
             outputArea.setText(value);
+
+            if (!outputArea.getText().isEmpty()) {
+                if (outputArea.getText().charAt(0) == '+') {
+                    outputArea.setForeground(Color.green);
+                } else if (outputArea.getText().charAt(0) == '-') {
+                    outputArea.setForeground(Color.red);
+                } else {
+                    outputArea.setForeground(Color.darkGray);
+                }
+            }
 
         } catch (IOException e1) {
             e1.printStackTrace();
