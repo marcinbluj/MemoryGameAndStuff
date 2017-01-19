@@ -48,6 +48,10 @@ public class MainWindow extends JFrame {
         UpdateButton updateButton = new UpdateButton(150, 30, 160, 5, inputField, value, change, opening);
         add(updateButton);
 
+        Table table = new Table(305,220, 5, 135);
+        add(table);
+
+        add(new RefreshTableButton(150, 30, 160, 100, table));
 
         repaint();
     }
