@@ -9,19 +9,20 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 
 public class GetButton extends JButton implements MouseListener {
     private InputField inputField;
-    private OutputArea outputArea;
-    private CombBox combBox;
+    private OutputArea outputAreaValue;
+    private OutputArea outputAreaChange;
+    private OutputArea outputAreaOpening;
 
-    public GetButton(int width, int height, int x, int y, InputField inputField, OutputArea outputArea) {
+    public GetButton(int width, int height, int x, int y, InputField inputField,
+                     OutputArea outputAreaValue, OutputArea outputAreaChange, OutputArea outputAreaOpening) {
         this.inputField = inputField;
-        this.outputArea = outputArea;
+        this.outputAreaValue = outputAreaValue;
+        this.outputAreaChange = outputAreaChange;
+        this.outputAreaOpening = outputAreaOpening;
 
         addMouseListener(this);
         setSize(width, height);
@@ -50,15 +51,25 @@ public class GetButton extends JButton implements MouseListener {
             Element content = doc.getElementById("aq_" + inputText + "_c2");
             String value = content.text();
 
-            outputArea.setText(value);
+            Element contentChange1 = doc.getElementById("aq_" + inputText + "_m2");
+            Element contentChange2 = doc.getElementById("aq_" + inputText + "_m3");
+            String change1 = contentChange1.text();
+            String change2 = contentChange2.text();
 
-            if (!outputArea.getText().isEmpty()) {
-                if (outputArea.getText().charAt(0) == '+') {
-                    outputArea.setForeground(Color.green);
-                } else if (outputArea.getText().charAt(0) == '-') {
-                    outputArea.setForeground(Color.red);
+            Element contentOpening = doc.getElementById("aq_" + inputText + "_o");
+            String opening = contentOpening.text();
+
+            outputAreaValue.setText(value);
+            outputAreaChange.setText(change1+" "+change2);
+            outputAreaOpening.setText(opening);
+
+            if (!outputAreaValue.getText().isEmpty()) {
+                if (outputAreaValue.getText().charAt(0) == '+') {
+                    outputAreaValue.setForeground(Color.green);
+                } else if (outputAreaValue.getText().charAt(0) == '-') {
+                    outputAreaValue.setForeground(Color.red);
                 } else {
-                    outputArea.setForeground(Color.darkGray);
+                    outputAreaValue.setForeground(Color.darkGray);
                 }
             }
 

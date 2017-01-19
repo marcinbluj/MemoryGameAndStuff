@@ -1,13 +1,14 @@
 package StooqMarket;
 
 import StooqMarket.Components.*;
+import StooqMarket.Components.Label;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
-    public MainWindow() throws HeadlessException {
 
+    public MainWindow() throws HeadlessException {
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
@@ -17,22 +18,25 @@ public class MainWindow extends JFrame {
         setVisible(true);
 
 
-        InputField inputField = new InputField(150, 30, 5,5);
+        InputField inputField = new InputField(150, 30, 5, 5);
         add(inputField);
 
-        OutputArea value = new OutputArea(95, 25, 5,70);
+        add(new Label("Kurs", 95,20,5,45));
+        OutputArea value = new OutputArea(95, 25, 5, 70);
         add(value);
 
-        OutputArea change = new OutputArea(95, 25, 109,70);
+        add(new Label("Zmiana",95, 20, 109, 45));
+        OutputArea change = new OutputArea(95, 25, 109, 70);
         add(change);
 
-        OutputArea opening = new OutputArea(95, 25, 213,70);
+        add(new Label("Otwarcie",95, 20, 213, 45));
+        OutputArea opening = new OutputArea(95, 25, 213, 70);
         add(opening);
 
-        CombBox combBox = new CombBox(150, 30, 5, 100, inputField, value);
+        CombBox combBox = new CombBox(150, 30, 5, 100, inputField, value, change, opening);
         add(combBox);
 
-        GetButton getButton = new GetButton(150,30,160,5, inputField, value);
+        GetButton getButton = new GetButton(150, 30, 160, 5, inputField, value, change, opening);
         add(getButton);
 
 

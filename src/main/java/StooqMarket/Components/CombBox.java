@@ -15,10 +15,15 @@ import java.util.List;
 
 public class CombBox extends JComboBox implements ItemListener {
     private InputField inputField;
-    private OutputArea outputArea;
+    private OutputArea outputAreaValue;
+    private OutputArea outputAreaChange;
+    private OutputArea outputAreaOpening;
 
-    public CombBox(int width, int height, int x, int y, InputField inputField, OutputArea outputArea) {
-        this.outputArea = outputArea;
+    public CombBox(int width, int height, int x, int y, InputField inputField,
+                   OutputArea outputAreaValue, OutputArea outputAreaChange, OutputArea outputAreaOpening) {
+        this.outputAreaValue = outputAreaValue;
+        this.outputAreaChange = outputAreaChange;
+        this.outputAreaOpening = outputAreaOpening;
         this.inputField = inputField;
 
         addItemListener(this);
@@ -45,29 +50,39 @@ public class CombBox extends JComboBox implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        setOutputArea(this.getSelectedItem().toString());
+        setOutputAreas(this.getSelectedItem().toString());
     }
 
-    private void setOutputArea(String inputText) {
+    private void setOutputAreas(String inputText) {
 
         inputText = inputText.trim();
         Document doc = null;
 
         try {
             doc = Jsoup.connect(("http://stooq.pl/q/?s=" + inputText)).get();
-            Element content = doc.getElementById("aq_" + inputText + "_c2");
-            String value = content.text();
+            Element contentValue = doc.getElementById("aq_" + inputText + "_c2");
+            String value = contentValue.text();
+
+            Element contentChange1 = doc.getElementById("aq_" + inputText + "_m2");
+            Element contentChange2 = doc.getElementById("aq_" + inputText + "_m3");
+            String change1 = contentChange1.text();
+            String change2 = contentChange2.text();
+
+            Element contentOpening = doc.getElementById("aq_" + inputText + "_o");
+            String opening = contentOpening.text();
 
             inputField.setText(inputText);
-            outputArea.setText(value);
+            outputAreaValue.setText(value);
+            outputAreaChange.setText(change1 + " " + change2);
+            outputAreaOpening.setText(opening);
 
-            if (!outputArea.getText().isEmpty()) {
-                if (outputArea.getText().charAt(0) == '+') {
-                    outputArea.setForeground(Color.green);
-                } else if (outputArea.getText().charAt(0) == '-') {
-                    outputArea.setForeground(Color.red);
+            if (!outputAreaChange.getText().isEmpty()) {
+                if (outputAreaChange.getText().trim().charAt(0) == '+') {
+                    outputAreaChange.setForeground(Color.green);
+                } else if (outputAreaChange.getText().trim().charAt(0) == '-') {
+                    outputAreaChange.setForeground(Color.red);
                 } else {
-                    outputArea.setForeground(Color.darkGray);
+                    outputAreaChange.setForeground(Color.gray);
                 }
             }
 
