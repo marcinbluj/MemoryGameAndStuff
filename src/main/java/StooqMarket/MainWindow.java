@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
-        setSize(890, 390);
+        setSize(890, 670);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -49,7 +49,9 @@ public class MainWindow extends JFrame {
         UpdateButton updateButton = new UpdateButton(150, 30, 160, 5, inputField, value, change, opening);
         add(updateButton);
 
-        Table table = new Table(305, 220, 5, 135);
+
+        Table table = new Table(305, 495, 5, 135);
+        add(new JScrollPane(table));
         add(table);
 
         add(new RefreshTableButton(150, 30, 160, 100, table));

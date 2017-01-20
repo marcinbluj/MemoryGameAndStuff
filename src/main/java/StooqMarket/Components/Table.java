@@ -15,6 +15,7 @@ public class Table extends JTable {
         setLocation(x, y);
         setBorder(new BevelBorder(1));
         setVisible(true);
+        setCellSelectionEnabled(false);
 
         model = new DefaultTableModel(columnNames, data.length);
 
