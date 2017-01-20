@@ -1,4 +1,4 @@
-package StooqMarket.Components;
+package pl.stooqExercises.Components;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

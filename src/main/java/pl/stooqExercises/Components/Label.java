@@ -1,4 +1,4 @@
-package StooqMarket.Components;
+package pl.stooqExercises.Components;
 
 import javax.swing.*;
 

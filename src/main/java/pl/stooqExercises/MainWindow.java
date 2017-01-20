@@ -1,7 +1,7 @@
-package StooqMarket;
+package pl.stooqExercises;
 
-import StooqMarket.Components.*;
-import StooqMarket.Components.Label;
+import pl.stooqExercises.Components.*;
+import pl.stooqExercises.Components.Label;
 
 import javax.swing.*;
 import java.awt.*;
