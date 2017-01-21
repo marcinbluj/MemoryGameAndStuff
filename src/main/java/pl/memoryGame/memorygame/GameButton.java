@@ -11,7 +11,7 @@ public class GameButton extends JButton implements MouseListener {
     private static List<GameButton> pairsToCheck = new ArrayList<>(2);
     private static List<GameButton> pairs = new ArrayList<>();
 
-    public GameButton(GameMark mark) {
+    GameButton(GameMark mark) {
         addMouseListener(this);
         this.mark = mark;
 
@@ -36,48 +36,8 @@ public class GameButton extends JButton implements MouseListener {
             updateMark();
             pairsToCheck.add(this);
 
-            if (pairsToCheck.size()==2){
-
-                if (pairsToCheck.get(0).getMark().getMark().equals(pairsToCheck.get(1).getMark().getMark())){
-                    pairsToCheck.get(0).setEnabled(false);
-                    pairsToCheck.get(1).setEnabled(false);
-                    pairs.add(pairsToCheck.get(0));
-                    pairs.add(pairsToCheck.get(1));
-                    pairsToCheck.clear();
-
-                } else {
-                    pairsToCheck.get(0).getMark().setFlag(false);
-                    pairsToCheck.get(0).updateMark();
-                    pairsToCheck.get(1).getMark().setFlag(false);
-                    pairsToCheck.get(1).updateMark();
-                    pairsToCheck.clear();
-
-                }
-            }
+            check();
         }
-
-//        else if (isEnabled() && !pairsToCheck.contains(this) && pairsToCheck.size() == 2) {
-//            if (pairsToCheck.get(0).getMark().getMark().equals(pairsToCheck.get(1).getMark().getMark())){
-//                pairsToCheck.get(0).setEnabled(false);
-//                pairsToCheck.get(0);
-//                pairsToCheck.get(1).setEnabled(false);
-//                pairsToCheck.get(1);
-//                pairsToCheck.clear();
-//                mark.setFlag(true);
-//                pairsToCheck.add(this);
-//                updateMark();
-//            } else {
-//                pairsToCheck.get(0).getMark().setFlag(false);
-//                pairsToCheck.get(0).updateMark();
-//                pairsToCheck.get(1).getMark().setFlag(false);
-//                pairsToCheck.get(1).updateMark();
-//                pairsToCheck.clear();
-//                mark.setFlag(true);
-//                pairsToCheck.add(this);
-//                updateMark();
-//            }
-//        }
-
     }
 
     @Override
@@ -90,12 +50,36 @@ public class GameButton extends JButton implements MouseListener {
 
     }
 
-    public void updateMark() {
+    private void updateMark() {
         setText(mark.toString());
     }
 
-    public GameMark getMark() {
+    private GameMark getMark() {
         return mark;
     }
 
+    private void check(){
+        if (pairsToCheck.size() == 2) {
+
+            if (pairsToCheck.get(0).getMark().getMark().equals(pairsToCheck.get(1).getMark().getMark())) {
+                pairsToCheck.get(0).setEnabled(false);
+                pairsToCheck.get(1).setEnabled(false);
+                pairs.add(pairsToCheck.get(0));
+                pairs.add(pairsToCheck.get(1));
+
+            } else {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                pairsToCheck.get(0).getMark().setFlag(false);
+                pairsToCheck.get(0).updateMark();
+                pairsToCheck.get(1).getMark().setFlag(false);
+                pairsToCheck.get(1).updateMark();
+
+            }
+            pairsToCheck.clear();
+        }
+    }
 }
