@@ -8,7 +8,8 @@ import java.util.List;
 
 public class GameButton extends JButton implements MouseListener {
     private GameMark mark;
-    private static List<GameButton> pairs = new ArrayList<>(2);
+    private static List<GameButton> pairsToCheck = new ArrayList<>(2);
+    private static List<GameButton> pairs = new ArrayList<>();
 
     public GameButton(GameMark mark) {
         addMouseListener(this);
@@ -30,47 +31,49 @@ public class GameButton extends JButton implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        if (isEnabled() && !pairs.contains(this) && pairs.size() < 2) {
+        if (isEnabled() && !pairsToCheck.contains(this) && pairsToCheck.size() < 2) {
             mark.setFlag(true);
             updateMark();
-            pairs.add(this);
+            pairsToCheck.add(this);
 
-            if (pairs.size()==2){
+            if (pairsToCheck.size()==2){
 
-                if (pairs.get(0).getMark().getMark().equals(pairs.get(1).getMark().getMark())){
-                    pairs.get(0).setEnabled(false);
-                    pairs.get(1).setEnabled(false);
-                    pairs.clear();
+                if (pairsToCheck.get(0).getMark().getMark().equals(pairsToCheck.get(1).getMark().getMark())){
+                    pairsToCheck.get(0).setEnabled(false);
+                    pairsToCheck.get(1).setEnabled(false);
+                    pairs.add(pairsToCheck.get(0));
+                    pairs.add(pairsToCheck.get(1));
+                    pairsToCheck.clear();
 
                 } else {
-                    pairs.get(0).getMark().setFlag(false);
-                    pairs.get(0).updateMark();
-                    pairs.get(1).getMark().setFlag(false);
-                    pairs.get(1).updateMark();
-                    pairs.clear();
+                    pairsToCheck.get(0).getMark().setFlag(false);
+                    pairsToCheck.get(0).updateMark();
+                    pairsToCheck.get(1).getMark().setFlag(false);
+                    pairsToCheck.get(1).updateMark();
+                    pairsToCheck.clear();
 
                 }
             }
         }
 
-//        else if (isEnabled() && !pairs.contains(this) && pairs.size() == 2) {
-//            if (pairs.get(0).getMark().getMark().equals(pairs.get(1).getMark().getMark())){
-//                pairs.get(0).setEnabled(false);
-//                pairs.get(0);
-//                pairs.get(1).setEnabled(false);
-//                pairs.get(1);
-//                pairs.clear();
+//        else if (isEnabled() && !pairsToCheck.contains(this) && pairsToCheck.size() == 2) {
+//            if (pairsToCheck.get(0).getMark().getMark().equals(pairsToCheck.get(1).getMark().getMark())){
+//                pairsToCheck.get(0).setEnabled(false);
+//                pairsToCheck.get(0);
+//                pairsToCheck.get(1).setEnabled(false);
+//                pairsToCheck.get(1);
+//                pairsToCheck.clear();
 //                mark.setFlag(true);
-//                pairs.add(this);
+//                pairsToCheck.add(this);
 //                updateMark();
 //            } else {
-//                pairs.get(0).getMark().setFlag(false);
-//                pairs.get(0).updateMark();
-//                pairs.get(1).getMark().setFlag(false);
-//                pairs.get(1).updateMark();
-//                pairs.clear();
+//                pairsToCheck.get(0).getMark().setFlag(false);
+//                pairsToCheck.get(0).updateMark();
+//                pairsToCheck.get(1).getMark().setFlag(false);
+//                pairsToCheck.get(1).updateMark();
+//                pairsToCheck.clear();
 //                mark.setFlag(true);
-//                pairs.add(this);
+//                pairsToCheck.add(this);
 //                updateMark();
 //            }
 //        }
