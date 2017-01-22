@@ -14,7 +14,8 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
 
     private int sleepMils = 3;
 
-    private int counter;
+    private int counterUp;
+    private int counterDown;
     private boolean falling = false;
 
     private static int timer = 0;
@@ -42,18 +43,17 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
 
         Graphics2D g2D = (Graphics2D) g;
 
-//        RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-//                RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//        rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-//
-//        g2D.setRenderingHints(rh);
+        RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+        g2D.setRenderingHints(rh);
 
         g2D.setColor(Color.black);
-        g2D.fillOval(x, y, 20, 20);
+        g2D.fillOval(x - 10, y - 10, 20, 20);
 
         drawObstacles(g2D);
-
 
     }
 
@@ -73,16 +73,29 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
 
     public void animate(int timer, int level) {
         if (timer % level == 0) {
-            if (counter == 75) {
+            if (counterUp >= 30) {
                 falling = true;
             }
             x = 100;
 
             if (!falling) {
-                y -= 1;
-                counter++;
+                if (counterUp <= 20) {
+                    y -= 3;
+                } else if (counterUp <= 25 && counterUp > 20) {
+                    y -= 2;
+                } else if (counterUp <= 30 && counterUp > 25) {
+                    y -= 1;
+                }
+                counterUp++;
             } else {
-                y += 1;
+                if (counterDown <= 5) {
+                    y += 1;
+                } else if (counterDown <= 10 && counterDown > 5) {
+                    y += 2;
+                } else if (counterDown > 10) {
+                    y += 3;
+                }
+                counterDown++;
             }
             repaint();
         }
@@ -91,7 +104,17 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
     private void obstacleMovement(int timer, int level, int start) {
         if (timer % level == 0 && timer >= start) {
             if (obstacleX > -100) {
-                obstacleX -= 1;
+                if (timer % 3 == 0) {
+                    obstacleX += 10;
+                    obstacleY += 20;
+                } else if (timer % 3 == 1) {
+                    obstacleX -= 5;
+                    obstacleY -= 10;
+                } else {
+                    obstacleX -= 7;
+                    obstacleY -= 10;
+                }
+//                obstacleX -= 1;
                 repaint();
             }
         }
@@ -120,31 +143,25 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
 
         while (true) {
             timer++;
-            System.out.println(timer);
 
-            animate(timer, 1);
+            animate(timer, 2);
 
-            obstacleMovement(timer, 3, 0);
+            obstacleMovement(timer, 2, 0);
 
-            obstacle1Movement(timer, 1, 2000);
+            obstacle1Movement(timer, 2, 1500);
 
             obstacle2Movement(timer, 2, 3000);
 
             try {
                 Thread.sleep(sleepMils);
             } catch (InterruptedException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
-            System.out.println(x);
-            System.out.println(y);
-            System.out.println("x " + obstacleX);
-            System.out.println("x1 " + obstacleX1);
-            System.out.println("x2 " + obstacleX2);
+
             if ((y > getSize().getHeight() || y < 0)
                     || ((x >= obstacleX && x <= (obstacleX + 50)) && (y >= 400 || y <= 300))
                     || ((x >= obstacleX1 && x <= (obstacleX1 + 50)) && (y >= 100 || y <= 0))
                     || ((x >= obstacleX2 && x <= (obstacleX2 + 100)) && (y >= 500 || y <= 400))) {
-                System.out.println(1);
                 stop();
             }
         }
@@ -157,9 +174,10 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        counter = 0;
+        counterUp = 0;
+        counterDown = 0;
         if (y > getSize().getHeight() || y < 0) {
-            System.out.println(1);
+            System.out.println("stop");
             stop();
         } else {
             stop();

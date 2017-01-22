@@ -19,6 +19,13 @@ public class BallWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        new BallWindow();
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame ex = new BallWindow();
+                ex.setVisible(true);
+            }
+        });
     }
 }
