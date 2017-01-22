@@ -3,9 +3,6 @@ package pl.memoryGame.bounceball;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by RENT on 2017-01-21.
- */
 public class BallWindow extends JFrame {
     public BallWindow() throws HeadlessException {
         setLayout(new BorderLayout());
