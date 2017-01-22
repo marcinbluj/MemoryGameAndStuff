@@ -25,19 +25,16 @@ public class GameButton extends JButton implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
         if (isEnabled() && !pairsToCheck.contains(this) && pairsToCheck.size() < 2) {
             mark.setFlag(true);
             updateMark();
             pairsToCheck.add(this);
-
-            check();
         }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        check();
     }
 
     @Override
@@ -70,8 +67,8 @@ public class GameButton extends JButton implements MouseListener {
             } else {
                 try {
                     Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
                 pairsToCheck.get(0).getMark().setFlag(false);
                 pairsToCheck.get(0).updateMark();
@@ -80,6 +77,15 @@ public class GameButton extends JButton implements MouseListener {
 
             }
             pairsToCheck.clear();
+            if (pairs.size()==16){
+                GameBoard.randomlyFillBoard();
+                for (int i = 0; i < pairs.size(); i++) {
+                    pairs.get(i).getMark().setFlag(false);
+                    pairs.get(i).setEnabled(true);
+                    pairs.get(i).updateMark();
+                }
+                pairs.clear();
+            }
         }
     }
 }
