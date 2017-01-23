@@ -12,7 +12,7 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
     private int obstacleX1, obstacleY1;
     private int obstacleX2, obstacleY2;
 
-    private int sleepMils = 3;
+    private int sleepMils = 5;
 
     private int counterUp;
     private int counterDown;
@@ -144,7 +144,7 @@ public class BallPanel extends JPanel implements Runnable, MouseListener {
         while (true) {
             timer++;
 
-            animate(timer, 2);
+            animate(timer, 1);
 
             obstacleMovement(timer, 2, 0);
 
